@@ -1,0 +1,21 @@
+<div class="container">
+    <h3 class="d-flex justify-content-center text-primary-emphasis">User Details Table</h3>
+    <h3 class="d-flex justify-content-center">Total Product Price : {{totalPrice | currency : 'INR' : 'symbol'}}</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Sno</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let items of userDetails let i = index">
+                <th>{{i+1}}</th>
+               <th>{{items.user_name | titlecase}}</th>
+               <th>{{items.price | currency:'INR':'symbol' }}</th>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,16 @@
+<h3 class="text-primary-emphasis d-flex justify-content-center" >Service Form</h3>
+<div class="container  w-50 ">
+    <form action="" [formGroup]="serviceForm">
+        <label>Select a user :</label>
+        <select class="form-select" formControlName="user_name" (change)="changeValue($event)">
+          <option *ngFor="let item of userDetails"[value]="item.name">{{ item.name }}</option>
+        </select>
+        <div class="form-group">
+            <label for="">price details</label>
+            <input type="number" class="form-control" formControlName="price">
+        </div>
+        <button class="btn btn-primary" (click)="addData(serviceForm.value)" >submit</button>
+    </form>
+  </div>
+  
+  <p class="d-flex justify-content-center" >{{serviceForm.value |json}}</p>
