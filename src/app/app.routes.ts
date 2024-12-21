@@ -27,6 +27,10 @@ export const routes: Routes = [
         component : UserDetailsComponent
     },
     {
+        path :'search',
+        loadComponent :() => import('../app/search-box/search-box.component').then(c => c.SearchBoxComponent)
+    },
+    {
         path : 'login',
         component : LoginComponent
 

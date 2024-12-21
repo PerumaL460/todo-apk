@@ -3,11 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import { flushMicrotasks } from '@angular/core/testing';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../auth.service';
+import { SearchBoxComponent } from "../../search-box/search-box.component";
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterModule ,CommonModule],
+  imports: [RouterModule,  SearchBoxComponent,CommonModule, SearchBoxComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
