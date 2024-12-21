@@ -1,9 +1,10 @@
-<div class="container-header">
+<div class="container-header" *ngIf="isAuthenticated">
     <div class="nav">
         <ul ><a class="text-decoration" routerLink="/home">Home</a></ul>
         <ul><a class="text-decoration" routerLink="/services">Services</a></ul>
         <ul><a class="text-decoration" routerLink="/user-details">User Details</a></ul>
         <ul><a class="text-decoration" routerLink="/contact-us">Contact Us</a></ul>
+        <ul><a class="text-decoration"  style="cursor: pointer;" (click)="Logout()">Logout</a></ul>
     </div>
 </div>
-<router-outlet></router-outlet>
+<!-- <router-outlet></router-outlet> -->

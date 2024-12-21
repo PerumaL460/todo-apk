@@ -9,6 +9,9 @@
             <label for="">price details</label>
             <input type="number" class="form-control" formControlName="price">
         </div>
+        <div class="form-group">
+             <app-options (change)="statusFilter($event)"></app-options>
+        </div>
         <button class="btn btn-primary" (click)="addData(serviceForm.value)" >submit</button>
     </form>
   </div>

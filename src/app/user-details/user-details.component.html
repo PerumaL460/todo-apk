@@ -1,21 +1,27 @@
 <div class="container">
     <h3 class="d-flex justify-content-center text-primary-emphasis">User Details Table</h3>
     <h3 class="d-flex justify-content-center">Total Product Price : {{totalPrice | currency : 'INR' : 'symbol'}}</h3>
-    <table class="table table-striped">
+    <app-options class="w-50 d-flex" (changeFilter)="statusFilter($event)" (userName)="getData($event)"></app-options>
+    <h4>{{userName | titlecase}}</h4>
+    <table *ngIf="filteredData?.length>=1 else loading" class="table table-striped">
         <thead>
             <tr>
                 <th>Sno</th>
                 <th>Name</th>
                 <th>Price</th>
-                <th></th>
+                <th>Status</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let items of userDetails let i = index">
+            <tr *ngFor="let items of filteredData let i = index">
                 <th>{{i+1}}</th>
                <th>{{items.user_name | titlecase}}</th>
-               <th>{{items.price | currency:'INR':'symbol' }}</th>
+               <th>{{items.price}}</th>
+               <th>{{items.status == "true" ? "Available" : "out of stock " | titlecase}}</th>
+
             </tr>
         </tbody>
     </table>
+    <ng-template #loading>  <h4>{{ 'no data to preview' | titlecase }}</h4>
+</ng-template>
 </div>

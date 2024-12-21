@@ -1,0 +1,21 @@
+<div class="container">
+    <table *ngIf="productDetails" class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>Product Name</th>
+                <th>Product price</th>
+                <th>Product Description</th>
+            </tr>
+        </thead>
+            <tbody>
+                <tr >
+                    <th>{{productDetails.name}}</th>
+                    <th>{{productDetails.todo_name != undefined || null ? productDetails.todo_name : "no data to preview" |titlecase}}</th>
+                    <th>{{productDetails.todo_status == "true" ? "Available" : "out of stock"}}</th>
+                </tr>
+            </tbody>
+    </table>
+    <div *ngIf="!productDetails" class="container-preview">
+        <h2 class="text-primary-emphasis">No Data To Preview</h2>
+    </div>
+</div>

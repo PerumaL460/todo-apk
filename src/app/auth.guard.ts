@@ -1,15 +1,23 @@
+import { Injectable, inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import { routes } from './app.routes';
-import { inject } from '@angular/core';
+import { LoginComponent } from './login/login/login.component';
+import { AuthService } from './auth.service';
+// @Injectable({
+//   providedIn : "root"
+// })
 
 export const authGuard: CanActivateFn = (route, state) => {
+
+  const login_auth = inject(AuthService);
   const router = inject(Router);
-  const isLoggedIn = false;
-  if(isLoggedIn){
+  if(login_auth.isAuthenticated()){
+    console.log("auth works");
     return true;
+    
   }
   else{
-    alert("contact administator");
-    return router.navigateByUrl('/home')
+    router.navigate(['/login']);
+    return false
   }
+  return true;
 };

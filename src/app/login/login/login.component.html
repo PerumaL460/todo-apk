@@ -1,0 +1,14 @@
+<div class="container-login">
+    <form action="" [formGroup]="loginForm">
+      <div class="form-group">
+        <label class="form-label" for="">Username :</label>
+        <input type="text" class="form-control" formControlName="username"  placeholder="Enter username">
+        <div class="text-danger" *ngIf="getFormControl('username')?.hasError('required')">Username is required</div>
+        <label for="">Password</label>
+        <input type="password" class="form-control" formControlName="password"  placeholder="Enter Password" >
+        <div class="text-danger" *ngIf="getFormControl('password')?.hasError('required')">Password is requried</div>
+        <button class="btn btn-primary" (click)="formSubmit(loginForm.value)">Submit</button>
+      </div>
+    </form>
+</div>
+{{loginForm.value | json}}

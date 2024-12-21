@@ -7,8 +7,13 @@
         <div class="form-group">
             <label for="">Product Name</label>
             <input type="text" class="form-control" placeholder="Enter Product " formControlName="name">
-            <div class="text-danger" *ngIf="getControls('name')?.hasError('required')">name is required</div>
+            <div class="text-danger" *ngIf="getControls('name')?.hasError('required')">Product is required</div>
         </div>
+        <div class="form-group">
+            <app-options (changeFilter)="statusFilter($event)"   ></app-options>
+        </div>
+        <!-- {{'perumal' | append: " "+ 'palanisamy' | titlecase}} -->
+  
         <!-- <div class="form-group">
             <label for="">email</label>
             <input type="text" class="form-control" formControlName="todo_name">
@@ -27,7 +32,8 @@
         <button class="btn btn-primary" (click)="formSubmit(todoForm)">submit</button>
     </form>
 </div>
-<!-- <div class="container pt-10">
+<!-- <p class="d-flex justify-content-center"> {{filteredUsers | json}} </p> -->
+<div class="container pt-10">
     <table class="table table-striped table-bordered">
     <thead class="table-dark">
         <tr>
@@ -39,21 +45,20 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let items of users let i = index">
-            <th>{{i + 1}}</th>
+        <tr *ngFor="let items of filteredUsers let i = index">
+            <th style="cursor: pointer;" (click)="navigateProductPage(items.id)">{{i+1}}</th>
             <th>{{items.name}}</th>
             <th *ngIf="!isEditable">{{ items.todo_name }}</th>
             <th *ngIf="isEditable" [contentEditable]="isEditable" #text  (keyup)="onEdit($event , items.id)">
               {{ items.todo_name }}
             </th>            
-            <th>{{items.todo_status == "true" ? "completed" : "Not completed"}}</th>
+            <th>{{items.todo_status == "true" ? "Available" : "Out of stock" | titlecase  }}</th>
             <th >
                  <button class="btn btn-sm - btn-success"  [disabled]="isEditable" (click)="onEdit(items.id , $event)"> Edit Todo</button>
                  <button class="btn btn-sm - btn-danger btn-delete" (click)="deleteTodo(items.id , $event)"> Delete Todo</button>
                  <button class="btn btn-sm - btn-warning btn-warning"  [disabled]="!isEditable" (click)="saveTodo($event , items.id)"> Save Todo</button>
-
             </th>
         </tr>
     </tbody>
     </table>
-</div> -->
+</div>

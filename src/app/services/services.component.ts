@@ -3,22 +3,24 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedService } from '../shared/shared.service';
 import { Router } from '@angular/router';
+import { OptionsComponent } from '../shared-components/options/options.component';
 
 @Component({
   selector: 'app-services',
   standalone: true,
-  imports: [CommonModule ,FormsModule ,ReactiveFormsModule],
+  imports: [CommonModule , OptionsComponent ,FormsModule ,ReactiveFormsModule],
   templateUrl: './services.component.html',
   styleUrl: './services.component.scss'
 })
 export class ServicesComponent {
   userDetails : any;
-  user_history : {user_name : string , price : number}[] =[];
+  user_history : {user_name : string , price : number ,status : boolean}[] =[];
   serviceForm! : FormGroup
   constructor(private fb : FormBuilder , private router : Router, private service : SharedService){
     this.serviceForm = this.fb.group({
       user_name :[''],
-      price :['']
+      price :[''],
+      status:['']
      })
     this.loadDatas();
     this.service.getDetails().subscribe((res:any)=>{
@@ -37,6 +39,14 @@ export class ServicesComponent {
         "price" : 0
       })
    }
+  }
+  statusFilter(event:any){
+    let val = event.target.value;
+    this.serviceForm.patchValue({
+      "status" : val,
+    });
+    this.saveUser_history();
+
   }
   changeValue(event : any){
     console.log(event.target.value);

@@ -1,0 +1,8 @@
+<div class="form-group">
+    <select (change)="statusFilter($event)" formControlName="todo_status" class="form-select">
+        <option value="all">Select a option</option>
+        <option selected value="true">Available</option>
+        <option class="text-danger" value="false">Out</option>
+    </select>
+    <button (click)="sendData($event)">send data</button>
+</div>
